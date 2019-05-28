@@ -25,9 +25,10 @@ public class MyResource {
     }
     
     @GET
-    @Path("soma/{a}/{b}") 
+    @Path("soma/{a}/{b}/{c}") 
     @Produces(MediaType.TEXT_PLAIN)
-     public float soma(@PathParam("a") float a ,@PathParam("b") float b) {
-        return a+b;
+     public float soma(@PathParam("a") float a ,
+    		 @PathParam("b") float b , @PathParam("c") float c) {
+        return a+b+c;
     }
 }
