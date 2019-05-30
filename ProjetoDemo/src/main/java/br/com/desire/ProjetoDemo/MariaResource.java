@@ -1,10 +1,7 @@
 package br.com.desire.ProjetoDemo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -61,7 +58,7 @@ public class MariaResource {
 	}
 
 	@POST
-	@Path("/maria/criar/{id}/{nome}/{pontos}")
+	@Path("criar/{id}/{nome}/{pontos}")
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	@Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
 	public Maria createMaria(@PathParam("id") int id, 
