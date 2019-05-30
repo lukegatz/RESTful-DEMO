@@ -13,7 +13,7 @@ public class MariaResourceTest {
 	Mariadepository repo;
 	// Array
 	List<Maria> array;
-	List<Maria> arrayDoRepo;
+	List<String> arrayDoRepo;
 	
 	@Before
 	public void setUp() {
@@ -23,7 +23,7 @@ public class MariaResourceTest {
 	
 	@Test
 	public void getMariasTest() {
-		arrayDoRepo = repo.getMarias();
+		arrayDoRepo.add(null);
 		assertEquals(array, arrayDoRepo);
 	}
 

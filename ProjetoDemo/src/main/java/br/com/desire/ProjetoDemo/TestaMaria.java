@@ -7,18 +7,20 @@ import java.util.List;
 public class TestaMaria {
 
 	public static void main(String[] args) {
-		List<Maria> array = new ArrayList<>();
+		List<String> array = new ArrayList<>();
 		Mariadepository repo = new Mariadepository();
 		// implementações do ArrayList
 		Maria e = new Maria(1, "Maria", 200);
+		Maria f = new Maria(2, "Joana", 222);
 //		array.add(e);	// adiciona uma Maria [CRIAR]
 		
 		repo.create(e);					// incluir uma Maria
-		array = repo.getMarias();
-		Iterator<Maria> it = array.iterator();
+		repo.create(f);
+//		Iterator<String> it = array.iterator();
+		array.add(repo.getMarias());
 		
 		// Listar todas as Marias
-		for (Maria maria : array) {
+		for (String maria : array) {
 			System.out.println(maria);
 		}
 		

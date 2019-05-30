@@ -3,31 +3,19 @@ package br.com.desire.ProjetoDemo;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 public class Mariadepository {
 	List<Maria> marias;
 	
+	// Construtor de Mariadepository recebe a instância de ArrayList
 	public Mariadepository() {
 		marias = new ArrayList<>();	
-//		Maria a1 = new  Maria();
-//		a1.setID(101);
-//		a1.setNome("Maria");
-//		a1.setPontos(10);
-//		Maria a2 = new  Maria();
-//		a2.setID(102);
-//		a2.setNome("GIL");
-//		a2.setPontos(10);
-//		Maria a3 = new  Maria();
-//		a3.setID(103);
-//		a3.setNome("Conte");
-//		a3.setPontos(11);
-//		marias.add(a1);
-//		marias.add(a2);
-//		marias.add(a3);
 	}
 	
 	// listar todas as Marias
-	public List<Maria> getMarias(){
-		return marias;
+	public String getMarias(){
+		return new Gson().toJson(marias);
 	}
 	
 	// get Maria by ID
@@ -42,7 +30,6 @@ public class Mariadepository {
 	
 	// criar Maria
 	public void create(Maria a) {
-		// TODO Auto-generated method stub
 		marias.add(a);
 	}
 
@@ -50,10 +37,16 @@ public class Mariadepository {
 		// TODO Auto-generated method stub
 		System.out.println("editar");
 	}
-
-	public void deletejogador(int id) {
-		// TODO Auto-generated method stub
-		System.out.println("apagar");
+	
+	// apaga Maria por meio do ID
+	public void apagaJogadorByID(int id) {
+		System.out.println("apagar jogador com ID: " + id);
+		marias.remove(id);
+	}
+	
+	public void apagaJogadores() {
+		System.out.println("apagar toda a lista de jogadores!!");
+		marias.clear();
 	}
 
 }
