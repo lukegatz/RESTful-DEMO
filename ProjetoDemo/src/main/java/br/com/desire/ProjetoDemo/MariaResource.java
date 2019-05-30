@@ -19,22 +19,12 @@ public class MariaResource {
 	Mariadepository repo = new Mariadepository();
 	// Array
 	List<Maria> array = new ArrayList<>();
-	// implementações do ArrayList
-	public String metodos(){
-		Maria e = new Maria();
-		array.add(e);	// adiciona uma Maria
-		array.clear();	// limpa toda a lista de Marias
-		array.add(0, e);// adiciona uma Maria no index 'n'
-		array.get(0);	// getByID
-		return "oi";
-	}
 
 	// tipo de operação e de qual forma deve apresentar o resultado
 	@GET
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML}) // produzir no formato XML
 	public List<Maria> getMarias() {
 		System.out.println("getMarias Calling....");
-
 		return repo.getMarias();
 	}
 

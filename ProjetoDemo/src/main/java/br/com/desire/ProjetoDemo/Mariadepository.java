@@ -8,21 +8,21 @@ public class Mariadepository {
 	
 	public Mariadepository() {
 		marias = new ArrayList<>();	
-		Maria a1 = new  Maria();
-		a1.setID(101);
-		a1.setNome("Maria");
-		a1.setPontos(10);
-		Maria a2 = new  Maria();
-		a2.setID(102);
-		a2.setNome("GIL");
-		a2.setPontos(10);
-		Maria a3 = new  Maria();
-		a3.setID(103);
-		a3.setNome("Conte");
-		a3.setPontos(11);
-		marias.add(a1);
-		marias.add(a2);
-		marias.add(a3);
+//		Maria a1 = new  Maria();
+//		a1.setID(101);
+//		a1.setNome("Maria");
+//		a1.setPontos(10);
+//		Maria a2 = new  Maria();
+//		a2.setID(102);
+//		a2.setNome("GIL");
+//		a2.setPontos(10);
+//		Maria a3 = new  Maria();
+//		a3.setID(103);
+//		a3.setNome("Conte");
+//		a3.setPontos(11);
+//		marias.add(a1);
+//		marias.add(a2);
+//		marias.add(a3);
 	}
 	
 	// listar todas as Marias
