@@ -13,12 +13,34 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import com.google.gson.Gson;
 // nome do recurso
-@Path("marias")
+@Path("/marias")
 public class MariaResource {
 	Mariadepository repo = new Mariadepository();
 	// Array
 	List<Maria> array = new ArrayList<>();
+
+	// TESTE: está funcionando?
+	@GET
+	@Path("web")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getWebservice() {
+		return "Web service funcionando!";
+	}
+	
+	// TESTE: está funcionando com JSON?
+	@GET
+	@Path("json")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getWebserviceJSON() {
+		// Teste básico
+		Maria maria = new Maria(2,"Maria maria", 300);
+		repo.create(maria);
+		array = repo.getMarias();
+		return new Gson().toJson(array);
+	}
 
 	// tipo de operação e de qual forma deve apresentar o resultado
 	@GET
@@ -39,13 +61,15 @@ public class MariaResource {
 	}
 
 	@POST
-	@Path("maria")
+	@Path("/maria/criar/{id}/{nome}/{pontos}")
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	public Maria createMaria(Maria a) {
-		System.out.println(a);;
-		repo.create(a);
-		return a;
-
+	@Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+	public Maria createMaria(@PathParam("id") int id, 
+			@PathParam("nome") String nome, @PathParam("pontos") int pontos, Maria mary) {
+		System.out.println(mary);
+		mary = new Maria(id, nome, pontos);
+		repo.create(mary);
+		return mary;
 	}
 
 	@POST
