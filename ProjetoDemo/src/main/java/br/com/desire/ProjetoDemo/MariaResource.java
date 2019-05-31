@@ -24,7 +24,7 @@ public class MariaResource {
 
 	// TESTE: está funcionando?
 	@GET
-	@Path("web")
+	@Path("its-alive")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getWebservice() {
 		return "Web service funcionando!";
@@ -56,11 +56,9 @@ public class MariaResource {
 	// Retorna Maria by ID
 	@GET
 	@Path("lista/{id}") //id é passado com parametro no URI do recurso
-	//@Produces(MediaType.APPLICATION_XML) // produzir no formato XML
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON}) // produzir no formato XML ou JSON
-	public Maria getMaria(@PathParam("id") int id) { // reconhecer que id é um parametro
+	public String getMaria(@PathParam("id") int id) { // reconhecer que id é um parametro
 		System.out.println("getMaria Calling....");
-
 		return repo.getMaria(id);
 	}
 	
@@ -68,13 +66,13 @@ public class MariaResource {
 	@POST
 	@Path("criar/{id}/{nome}/{pontos}")
 	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-	@Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
-	public Maria createMaria(@PathParam("id") int id, 
+//	@Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
+	public String createMaria(@PathParam("id") int id, 
 			@PathParam("nome") String nome, @PathParam("pontos") int pontos, Maria mary) {
 		System.out.println(mary);
 		mary = new Maria(id, nome, pontos);
 		repo.create(mary);
-		return mary;
+		return mary.toString();
 	}
 
 	@PUT
@@ -89,7 +87,17 @@ public class MariaResource {
 		msg = "editado com sucesso";
 		return msg;
 	}
-
+	
+	@DELETE
+	@Path("deleta")
+	@Produces(MediaType.TEXT_PLAIN) // produzir no formato XML ou JSON
+	public String deleteAll() { 
+		String msg= "";
+		repo.apagaJogadores();
+		msg = "lista apagada";
+		return msg;
+	}
+	
 	@DELETE
 	@Path("jogador/deleta/{id}") //id é passado com parametro no URI do recurso
 	//@Produces(MediaType.APPLICATION_XML) // produzir no formato XML
