@@ -17,8 +17,6 @@ import com.google.gson.Gson;
 @Path("/jogadores")
 public class MariaResource {
 	Mariadepository repo = new Mariadepository();
-	// Array de Marias
-	List<Maria> array = new ArrayList<>();
 	// Array de String (volta em Json)
 	List<String> mariaStr = new ArrayList<>();
 
@@ -94,6 +92,7 @@ public class MariaResource {
 	public String deleteAll() { 
 		String msg= "";
 		repo.apagaJogadores();
+//		repo.marias.clear();	// limpa a lista DE NOVO!!
 		msg = "lista apagada";
 		return msg;
 	}

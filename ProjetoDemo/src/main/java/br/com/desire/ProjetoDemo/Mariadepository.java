@@ -6,14 +6,15 @@ import java.util.List;
 import com.google.gson.Gson;
 
 public class Mariadepository {
-	List<Maria> marias;
-	String mj;
+	private static List<Maria> marias;
+	private String mj;
 
 	// Construtor de Mariadepository recebe a instância de ArrayList
 	public Mariadepository() {
 		marias = new ArrayList<>();	
 
 		// apenas para testar com elementos na lista
+		// (quando recriamos a lista, ela é preenchida automaticamente)
 		Maria maria = new Maria(2,"Maria maria", 300);
 		Maria marya = new Maria(4,"Joana",222);
 		Maria moara = new Maria(8,"Emengarda",333);
@@ -44,7 +45,8 @@ public class Mariadepository {
 	public void create(Maria a) {
 		marias.add(a);
 	}
-
+	
+	// editar by ID
 	public void edit(Maria a, int id) {
 		// TODO Auto-generated method stub
 		System.out.println("editar");
@@ -55,10 +57,15 @@ public class Mariadepository {
 		System.out.println("apagar jogador com ID: " + id);
 		marias.remove(id);
 	}
-
+	
+	// apaga todos os jogadores da lista
 	public void apagaJogadores() {
 		System.out.println("apagar toda a lista de jogadores!!");
-		marias.clear();
+		for (Maria m : marias) {
+			m.setID(0);
+			m.setNome(null);
+			m.setPontos(0);
+		}
 	}
 
 }

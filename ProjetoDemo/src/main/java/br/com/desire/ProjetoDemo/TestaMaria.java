@@ -21,10 +21,10 @@ public class TestaMaria {
 		array.add(repo.getMarias());
 		
 		// Listar todas as Marias
-		for (Maria maria : repo.marias) {
-			System.out.println(maria.getID());
-			System.out.println(maria.getNome());
-		}
+//		for (Maria maria : repo.marias) {
+//			System.out.println(maria.getID());
+//			System.out.println(maria.getNome());
+//		}
 		
 //		array.clear();	// limpa toda a lista de Marias [DELETAR TODAS AS MARIAS]
 //		array.add(0, e);// adiciona uma Maria no index 'n'  [ADD BY ID]
