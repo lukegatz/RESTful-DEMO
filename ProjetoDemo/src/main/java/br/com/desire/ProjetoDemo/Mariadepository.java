@@ -1,6 +1,8 @@
 package br.com.desire.ProjetoDemo;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.google.gson.Gson;
@@ -24,21 +26,29 @@ public class Mariadepository {
 	}
 
 	// listar todas as Marias
-	public String getMarias(){
-		return new Gson().toJson(marias);
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<Maria> getMarias(){
+//		return new Gson().toJson(marias);
+		Collections.sort(marias, new Comparator() {
+			public int compare(Object m1, Object m2) {
+				Maria ma1 = (Maria) m1;
+				Maria ma2 = (Maria) m2;
+				return Integer.compare(ma1.getID(), ma2.getID());
+			}
+		});
+		return marias;
 	}
 
 	// get Maria by ID
-	public String getMaria(int id){
+	public Maria getMaria(int id){
 		for(Maria a: marias) {
 			System.out.println("Maria na fila, com ID " + a.getID() + " --> " + a);
 			if (a.getID() == id) {
-				mj = a.toString();
-				return mj;
+				return a;
 			}
 		}
 
-		return new Maria().toString();
+		return new Maria();
 	}
 
 	// criar Maria
@@ -59,13 +69,16 @@ public class Mariadepository {
 	}
 	
 	// apaga todos os jogadores da lista
-	public void apagaJogadores() {
+	public boolean apagaJogadores() {
 		System.out.println("apagar toda a lista de jogadores!!");
-		for (Maria m : marias) {
-			m.setID(0);
-			m.setNome(null);
-			m.setPontos(0);
+		boolean apagou = false;
+		apagou = marias.removeAll(marias);
+		
+		for(int i = 0; i < marias.size(); i++) {
+			System.out.println("O que tem em marias?!? " + marias.get(i));
 		}
+		
+		return apagou;
 	}
 
 }

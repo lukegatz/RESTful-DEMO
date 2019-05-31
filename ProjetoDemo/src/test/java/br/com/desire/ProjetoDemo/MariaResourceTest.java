@@ -10,21 +10,35 @@ import org.junit.Test;
 
 public class MariaResourceTest {
 	
-	Mariadepository repo;
+	static Mariadepository repo;
 	// Array
 	List<Maria> array;
-	List<String> arrayDoRepo;
+	Maria m1, m2, m3, m4;
+	MariaResource instancia;
 	
 	@Before
 	public void setUp() {
 		 repo = new Mariadepository();
+		 instancia = new MariaResource();
 		 array = new ArrayList<>();
+		 m1 = new Maria(1,"Maria",200);
+		 m2 = new Maria(2,"Joana",333);
+		 m3 = new Maria(4,"Bubu",444);
+		 m4 = new Maria();
+		 // preenche a lista
+		 array.add(m1);
+		 array.add(m2);
+		 array.add(m3);
 	}
 	
 	@Test
 	public void getMariasTest() {
-		arrayDoRepo.add(null);
-		assertEquals(array, arrayDoRepo);
+		int tamanho = array.size();
+		assertEquals(tamanho, 3);
+	}
+	
+	public void createMariaTest() {
+		m4 = instancia.createMaria(6, "Penny penny penny", 2000, m4);
 	}
 
 }

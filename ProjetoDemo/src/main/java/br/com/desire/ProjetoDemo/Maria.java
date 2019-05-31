@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 // retornar elemento no formato XML
 @XmlRootElement
 public class Maria {
-	private int ID;
+	private Integer ID;
 	private String nome;
 	private int pontos;
 	
@@ -15,7 +15,7 @@ public class Maria {
 	}
 	
 	// Construtor + parâmetros
-	public Maria(int ID, String nome, int pontos) {
+	public Maria(Integer ID, String nome, int pontos) {
 		this.ID = ID;
 		this.nome = nome;
 		this.pontos = pontos;
@@ -33,10 +33,10 @@ public class Maria {
 	public void setPontos(int pontos) {
 		this.pontos = pontos;
 	}
-	public int getID() {
+	public Integer getID() {
 		return ID;
 	}
-	public void setID(int iD) {
+	public void setID(Integer iD) {
 		ID = iD;
 	}
 	@Override

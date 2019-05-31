@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 // nome do recurso
 @Path("/jogadores")
 public class MariaResource {
-	Mariadepository repo = new Mariadepository();
+	private static Mariadepository repo = new Mariadepository();
 	// Array de String (volta em Json)
 	List<String> mariaStr = new ArrayList<>();
 
@@ -37,7 +37,7 @@ public class MariaResource {
 		// Teste básico
 		Maria maria = new Maria(2,"Maria maria", 300);
 		repo.create(maria);
-		mariaStr.add(repo.getMarias());
+		mariaStr.add(repo.getMarias().toString());
 		return new Gson().toJson(mariaStr);
 	}
 
@@ -45,8 +45,8 @@ public class MariaResource {
 	// Lista todas as Marias >>>
 	@GET
 	@Path("lista")
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML}) // produzir no formato XML
-	public String getMarias() {
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON,}) // produzir no formato XML
+	public List<Maria> getMarias() {
 		System.out.println("getMarias Calling....");
 		return repo.getMarias();
 	}
@@ -55,22 +55,22 @@ public class MariaResource {
 	@GET
 	@Path("lista/{id}") //id é passado com parametro no URI do recurso
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON}) // produzir no formato XML ou JSON
-	public String getMaria(@PathParam("id") int id) { // reconhecer que id é um parametro
+	public Maria getMaria(@PathParam("id") int id) { // reconhecer que id é um parametro
 		System.out.println("getMaria Calling....");
 		return repo.getMaria(id);
 	}
 	
-	// Cria uma nova Maria
+	// Cria uma nova Maria (e adiciona à lista)
 	@POST
 	@Path("criar/{id}/{nome}/{pontos}")
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON,})
 //	@Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
-	public String createMaria(@PathParam("id") int id, 
+	public Maria createMaria(@PathParam("id") int id, 
 			@PathParam("nome") String nome, @PathParam("pontos") int pontos, Maria mary) {
 		System.out.println(mary);
 		mary = new Maria(id, nome, pontos);
 		repo.create(mary);
-		return mary.toString();
+		return mary;
 	}
 
 	@PUT
@@ -91,9 +91,10 @@ public class MariaResource {
 	@Produces(MediaType.TEXT_PLAIN) // produzir no formato XML ou JSON
 	public String deleteAll() { 
 		String msg= "";
-		repo.apagaJogadores();
+		boolean delete = 
+				repo.apagaJogadores();
 //		repo.marias.clear();	// limpa a lista DE NOVO!!
-		msg = "lista apagada";
+		msg = "lista apagada? " + delete;
 		return msg;
 	}
 	
