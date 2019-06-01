@@ -74,11 +74,12 @@ public class MariaResource {
 	}
 
 	@PUT
-	@Path("edita/{id}") //id é passado com parametro no URI do recurso
+	@Path("edita/{id}") //id é passado como parametro no URI do recurso
 	//@Produces(MediaType.APPLICATION_XML) // produzir no formato XML
 	@Produces(MediaType.TEXT_PLAIN) // produzir no formato XML ou JSON
 	@Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
 	public String edita(Maria a, @PathParam("id") int id) { // reconhecer que id é um parametro
+		a = new Maria();
 		String msg= "";
 		System.out.println(a.getID());
 		repo.edit(a,id);
@@ -100,11 +101,12 @@ public class MariaResource {
 	}
 	
 	@DELETE
-	@Path("jogador/deleta/{id}") //id é passado com parametro no URI do recurso
+	@Path("deleta/{id}") //id é passado como parametro no URI do recurso
 	//@Produces(MediaType.APPLICATION_XML) // produzir no formato XML
 	@Produces(MediaType.TEXT_PLAIN) // produzir no formato XML ou JSON
 	public String delete(@PathParam("id") int id) { // reconhecer que id é um parametro
 		String msg= "";
+		System.out.println(repo.hashCode());
 		repo.apagaJogadorByID(id);
 		msg = "removido com sucesso";
 		return msg;

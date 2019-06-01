@@ -14,16 +14,17 @@ public class Mariadepository {
 
 		// apenas para testar com elementos na lista
 		// (quando recriamos a lista, ela é preenchida automaticamente)
-		Maria maria = new Maria(2,"Maria maria", 300);
-		Maria marya = new Maria(4,"Joana",222);
-		Maria moara = new Maria(8,"Emengarda",333);
-		try {
-			create(maria);
-			create(marya);
-			create(moara);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		// para esvaziar a lista >> comente o trecho abaixo
+//		Maria maria = new Maria(2,"Maria maria", 300);
+//		Maria marya = new Maria(4,"Joana",222);
+//		Maria moara = new Maria(8,"Emengarda",333);
+//		try {
+//			create(maria);
+//			create(marya);
+//			create(moara);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	// listar todas as Marias
@@ -43,7 +44,7 @@ public class Mariadepository {
 	// get Maria by ID
 	public Maria getMaria(int id){
 		for(Maria a: marias) {
-			System.out.println("Maria na fila, com ID " + a.getID() + " --> " + a);
+//			System.out.println("Maria na fila, com ID " + a.getID() + " --> " + a);
 			if (a.getID() == id) {
 				return a;
 			}
@@ -65,15 +66,41 @@ public class Mariadepository {
 	
 	// editar by ID
 	public void edit(Maria a, int id) {
-		// TODO Auto-generated method stub
-		System.out.println("editar");
+		System.out.println("editar jogador com ID: " + id);
+		// altera o elemento com o id informado
+		int pos = 0;
+		// percorre a lista de marias, procura pelo id informado
+		// retorna o index da maria que deve ser editada
+		for(int i = 0; i < marias.size(); i++) {
+			if(marias.get(i).getID() == id) {
+//				System.out.println("Eu entrei no laço, " +
+//						"e vou editar o registro!" + marias.get(i));
+				pos = i;
+			}
+		}
+		// preencher os dados da maria
+		
+		
+		// edita a maria na posição 'n'
+		marias.set(pos, a);
 	}
 
 	// apaga Maria por meio do ID
 	public void apagaJogadorByID(int id) {
 		System.out.println("apagar jogador com ID: " + id);
 		// remove o elemento com o id informado
-		marias.remove(id);
+		int pos = 0;
+		// percorre a lista de marias, procura pelo id informado
+		// retorna o index da maria que deve ser apagada
+		for(int i = 0; i < marias.size(); i++) {
+			if(marias.get(i).getID() == id) {
+//				System.out.println("Eu entrei no laço, " +
+//						"e apaguei o registro!" + marias.get(i));
+				pos = i;
+			}
+		}
+		// remove a maria na posição 'n'
+		marias.remove(marias.get(pos));
 	}
 	
 	// apaga todos os jogadores da lista
@@ -82,9 +109,9 @@ public class Mariadepository {
 		boolean apagou = false;
 		apagou = marias.removeAll(marias);
 		
-		for(int i = 0; i < marias.size(); i++) {
-			System.out.println("O que tem em marias?!? " + marias.get(i));
-		}
+//		for(int i = 0; i < marias.size(); i++) {
+//			System.out.println("O que tem em marias?!? " + marias.get(i));
+//		}
 		
 		return apagou;
 	}
