@@ -15,8 +15,14 @@ public class TestaMaria {
 		Maria retorna;
 //		array.add(e);	// adiciona uma Maria [CRIAR]
 		
-		repo.create(e);					// incluir uma Maria
-		repo.create(f);
+		try {
+			repo.create(e);
+			repo.create(f);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}					// incluir uma Maria
+		
 //		Iterator<String> it = array.iterator();
 //		array.add(repo.getMarias());
 		

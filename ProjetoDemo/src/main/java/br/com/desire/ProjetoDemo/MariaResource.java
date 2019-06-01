@@ -33,7 +33,7 @@ public class MariaResource {
 	@GET
 	@Path("json")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getWebserviceJSON() {
+	public String getWebserviceJSON() throws Exception {
 		// Teste básico
 		Maria maria = new Maria(2,"Maria maria", 300);
 		repo.create(maria);
@@ -66,7 +66,7 @@ public class MariaResource {
 	@Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON,})
 //	@Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
 	public Maria createMaria(@PathParam("id") int id, 
-			@PathParam("nome") String nome, @PathParam("pontos") int pontos, Maria mary) {
+			@PathParam("nome") String nome, @PathParam("pontos") int pontos, Maria mary) throws Exception {
 		System.out.println(mary);
 		mary = new Maria(id, nome, pontos);
 		repo.create(mary);
@@ -91,6 +91,7 @@ public class MariaResource {
 	@Produces(MediaType.TEXT_PLAIN) // produzir no formato XML ou JSON
 	public String deleteAll() { 
 		String msg= "";
+		// apenas para verificação
 		boolean delete = 
 				repo.apagaJogadores();
 //		repo.marias.clear();	// limpa a lista DE NOVO!!

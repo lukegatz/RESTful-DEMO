@@ -5,12 +5,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.google.gson.Gson;
-
 public class Mariadepository {
 	private static List<Maria> marias;
-	private String mj;
-
+	
 	// Construtor de Mariadepository recebe a instância de ArrayList
 	public Mariadepository() {
 		marias = new ArrayList<>();	
@@ -20,15 +17,19 @@ public class Mariadepository {
 		Maria maria = new Maria(2,"Maria maria", 300);
 		Maria marya = new Maria(4,"Joana",222);
 		Maria moara = new Maria(8,"Emengarda",333);
-		create(maria);
-		create(marya);
-		create(moara);
+		try {
+			create(maria);
+			create(marya);
+			create(moara);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	// listar todas as Marias
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Maria> getMarias(){
-//		return new Gson().toJson(marias);
+//		return new Gson().toJson(marias);	// retornar String Json
 		Collections.sort(marias, new Comparator() {
 			public int compare(Object m1, Object m2) {
 				Maria ma1 = (Maria) m1;
@@ -47,13 +48,19 @@ public class Mariadepository {
 				return a;
 			}
 		}
-
+		// se não encontrou, retorna uma Maria vazia
 		return new Maria();
 	}
 
 	// criar Maria
-	public void create(Maria a) {
-		marias.add(a);
+	public void create(Maria a) throws Exception {
+		// garante que ID é UNIQUE
+		for (Maria maria : marias) {
+			if(a.getID() == maria.getID()) {
+				throw new Exception("ID deve ser único!!");
+			}
+		}
+		marias.add(a);	// adiciona maria na lista
 	}
 	
 	// editar by ID
@@ -65,6 +72,7 @@ public class Mariadepository {
 	// apaga Maria por meio do ID
 	public void apagaJogadorByID(int id) {
 		System.out.println("apagar jogador com ID: " + id);
+		// remove o elemento com o id informado
 		marias.remove(id);
 	}
 	

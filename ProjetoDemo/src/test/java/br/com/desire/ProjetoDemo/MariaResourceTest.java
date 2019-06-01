@@ -13,7 +13,7 @@ public class MariaResourceTest {
 	static Mariadepository repo;
 	// Array
 	List<Maria> array;
-	Maria m1, m2, m3, m4;
+	Maria m1, m2, m3, m4, m5;
 	MariaResource instancia;
 	
 	@Before
@@ -25,6 +25,7 @@ public class MariaResourceTest {
 		 m2 = new Maria(2,"Joana",333);
 		 m3 = new Maria(4,"Bubu",444);
 		 m4 = new Maria();
+		 m5 = new Maria();
 		 // preenche a lista
 		 array.add(m1);
 		 array.add(m2);
@@ -37,8 +38,11 @@ public class MariaResourceTest {
 		assertEquals(tamanho, 3);
 	}
 	
-	public void createMariaTest() {
+	@Test
+	public void createMariaTest() throws Exception {
 		m4 = instancia.createMaria(6, "Penny penny penny", 2000, m4);
+		m5 = instancia.createMaria(6, "Harold Ramis", 2000, m4);
+		assertSame(m4, m5);
 	}
 
 }
