@@ -74,12 +74,17 @@ public class MariaResource {
 	}
 
 	@PUT
-	@Path("edita/{id}") //id é passado como parametro no URI do recurso
+	@Path("edita/{id}/{nome}/{pontos}") //id é passado como parametro no URI do recurso
 	//@Produces(MediaType.APPLICATION_XML) // produzir no formato XML
 	@Produces(MediaType.TEXT_PLAIN) // produzir no formato XML ou JSON
 	@Consumes({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
-	public String edita(Maria a, @PathParam("id") int id) { // reconhecer que id é um parametro
+	public String edita(Maria a, @PathParam("id") int id,
+			@PathParam("nome") String nome, @PathParam("pontos") int pontos) { // reconhecer que id é um parametro
+		// cria o objeto Maria e preenche os dados
 		a = new Maria();
+		a.setID(id);
+		a.setNome(nome);
+		a.setPontos(pontos);
 		String msg= "";
 		System.out.println(a.getID());
 		repo.edit(a,id);

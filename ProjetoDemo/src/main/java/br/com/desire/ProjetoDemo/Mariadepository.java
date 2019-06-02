@@ -78,8 +78,6 @@ public class Mariadepository {
 				pos = i;
 			}
 		}
-		// preencher os dados da maria
-		
 		
 		// edita a maria na posição 'n'
 		marias.set(pos, a);
